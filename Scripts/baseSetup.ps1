@@ -14,7 +14,7 @@ choco install -y beyondcompare
 choco install -y winmerge
 choco install -y microsoftazurestorageexplorer
 choco install -y github-desktop
-
+choco install -y postman
 
 
 try {
@@ -54,3 +54,6 @@ try {
 catch {
   Write-Host "Error setting Windows Explorer Options" -ForegroundColor "Red"
 }
+
+New-Item -Path "c:\" -Name "projects" -ItemType "directory"
+New-Item -Path "c:\" -Name "license" -ItemType "directory"
