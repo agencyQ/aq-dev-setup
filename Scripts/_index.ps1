@@ -8,7 +8,8 @@ function runscript {
     refreshenv 
   }
   catch {
-    Write-Output "Failure in script $scriptName"
+    Write-Host "Failure in script $scriptUrl"
+    Write-Host $_.Exception.Message -ForegroundColor "Red"
   }
 }
 
