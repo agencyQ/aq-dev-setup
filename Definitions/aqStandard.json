@@ -19,6 +19,9 @@
       "type": "Microsoft.VirtualMachineImages/imageTemplates",
       "apiVersion": "[parameters('api-version')]",
       "location": "[parameters('svclocation')]",
+      "sku": {
+        "name": "Standard"
+      },
       "dependsOn": [],
       "tags": {
         "imagebuilderTemplate": "win11multi",
@@ -31,7 +34,7 @@
         }
       },
       "properties": {
-        "buildTimeoutInMinutes": 100,
+        "buildTimeoutInMinutes": 180,
         "vmProfile": {
           "vmSize": "Standard_DS3_v2",
           "osDiskSizeGB": 256
