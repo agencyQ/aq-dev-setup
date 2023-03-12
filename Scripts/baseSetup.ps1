@@ -13,7 +13,6 @@ choco install -y filezilla
 choco install -y beyondcompare
 choco install -y winmerge
 choco install -y microsoftazurestorageexplorer
-choco install -y github-desktop
 choco install -y postman
 
 
