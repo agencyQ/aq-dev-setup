@@ -10,13 +10,13 @@ Write-Host "Uninstall some applications that come with Windows out of the box" -
 
 Get-ProvisionedAppxPackage -Online | Where-Object { $_.PackageName -match "xbox" } | ForEach-Object { Remove-ProvisionedAppxPackage -Online -AllUsers -PackageName $_.PackageName }
 
-
 function removeApp {
   Param ([string]$appName)
 
   try {
     Write-Output "Trying to remove $appName"
-    Get-AppxPackage $appName -AllUsers | Remove-AppxPackage
+    Get-AppxPackage $appName -AllUsers | Remove-AppxPackage -AllUsers
+    Get-AppxPackage $appName | Remove-AppxPackage
     Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like $appName | Remove-AppxProvisionedPackage -Online
   }
   catch {
