@@ -14,8 +14,9 @@ function runscript {
 }
 
 
-runscript "$scriptBaseUrl/removeDefaultApps.ps1"
 runscript "https://community.chocolatey.org/install.ps1"
+runscript "$scriptBaseUrl/removeDefaultApps.ps1"
+runscript "$scriptBaseUrl/SystemSettings.ps1"
 runscript "$scriptBaseUrl/baseSetup.ps1"
 runscript "$scriptBaseUrl/nodeDevelopment.ps1"
 runscript "$scriptBaseUrl/visualStudio.ps1"
