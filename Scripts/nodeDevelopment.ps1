@@ -1,5 +1,5 @@
+choco install -y nvs
 $env:NVS_HOME = "$env:ProgramData\nvs"
-New-Item -Path $env:NVS_HOME -Name "projects" -ItemType "directory"
 
 Push-Location $env:NVS_HOME
 
