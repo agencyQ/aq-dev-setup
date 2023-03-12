@@ -1,9 +1,5 @@
 $scriptBaseUrl = 'https://raw.githubusercontent.com/agencyQ/aq-dev-setup/main/Scripts/'
-function runaqscript {
-  Param ([string]$scriptName)
 
-  runscript 'https://raw.githubusercontent.com/agencyQ/aq-dev-setup/main/Scripts/$scriptName.ps1'
-}
 function runscript {
   Param ([string]$scriptUrl)
 
@@ -17,10 +13,10 @@ function runscript {
 }
 
 
-runscript 'https://raw.githubusercontent.com/agencyQ/aq-dev-setup/main/Scripts/removeDefaultApps.ps1'
-runscript '$scriptBaseUrl/removeDefaultApps.ps1'
-runscript '$scriptBaseUrl/baseSetup.ps1'
-runscript '$scriptBaseUrl/nodeDevelopment.ps1'
-runscript '$scriptBaseUrl/visualStudio.ps1'
+runscript "https://raw.githubusercontent.com/agencyQ/aq-dev-setup/main/Scripts/removeDefaultApps.ps1"
+runscript "$scriptBaseUrl/removeDefaultApps.ps1"
+runscript "$scriptBaseUrl/baseSetup.ps1"
+runscript "$scriptBaseUrl/nodeDevelopment.ps1"
+runscript "$scriptBaseUrl/visualStudio.ps1"
 
                             
