@@ -1,16 +1,16 @@
-choco install -y nvm
-refreshenv
+$env:NVS_HOME = "$env:ProgramData\nvs"
+New-Item -Path $env:NVS_HOME -Name "projects" -ItemType "directory"
 
-$env:NVM_HOME = "$env:ProgramData\nvm"
+Push-Location $env:NVS_HOME
 
 try {
-  Push-Location $env:NVM_HOME
-
-  .\nvm.exe install lts
-  .\nvm.exe use lts
+  git clone https://github.com/jasongin/nvs "$env:NVS_HOME"
+  . "$env:NVS_HOME\nvs.ps1" install
+  . "$env:NVS_HOME\nvs.ps1" add lts
+  . "$env:NVS_HOME\nvs.ps1" use lts
 }
 catch {
-  Write-Output "Failed to install node LTS"
+  Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
 }
 finally {
   Pop-Location
