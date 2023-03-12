@@ -1,0 +1,1 @@
+choco install -y sql-server-2022

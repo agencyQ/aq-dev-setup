@@ -1,0 +1,83 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "imageTemplateName": {
+      "type": "string"
+    },
+    "api-version": {
+      "type": "string"
+    },
+    "svclocation": {
+      "type": "string"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('imageTemplateName')]",
+      "type": "Microsoft.VirtualMachineImages/imageTemplates",
+      "apiVersion": "[parameters('api-version')]",
+      "location": "[parameters('svclocation')]",
+      "dependsOn": [],
+      "tags": {
+        "imagebuilderTemplate": "win11multi",
+        "userIdentity": "enabled"
+      },
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "/subscriptions/97acfce6-88e7-49dd-8e29-db06a097a787/resourcegroups/dev-workstations/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity1678550549": {}
+        }
+      },
+      "properties": {
+        "buildTimeoutInMinutes": 100,
+        "vmProfile": {
+          "vmSize": "Standard_DS3_v2",
+          "osDiskSizeGB": 256
+        },
+        "source": {
+          "type": "PlatformImage",
+          "publisher": "MicrosoftWindowsDesktop",
+          "offer": "Windows-11",
+          "sku": "win11-22h2-avd",
+          "version": "latest"
+        },
+        "customize": [
+          {
+            "type": "PowerShell",
+            "name": "Install Choco and Vscode",
+            "inline": [
+              "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
+              "choco install -y vscode",
+              "choco install -y visualstudio2022professional",
+              "choco install -y git",
+              "choco install -y tortoisegit",
+              "choco install -y sql-server-2019",
+              "choco install -y sql-server-management-studio",
+              "Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions",
+              "Set-ItemProperty -Path HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced -Name NavPaneExpandToCurrentFolder -Value 1",
+              "Set-ItemProperty -Path HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced -Name NavPaneShowAllFolders -Value 1",
+              "Set-ItemProperty -Path HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced -Name LaunchTo -Value 1",
+              "Set-ItemProperty -Path HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced -Name MMTaskbarMode -Value 2",
+              "Set-ItemProperty -Path HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1",
+              "md c:\\projects"
+            ]
+          }
+        ],
+        "distribute": [
+          {
+            "type": "SharedImage",
+            "galleryImageId": "/subscriptions/97acfce6-88e7-49dd-8e29-db06a097a787/resourceGroups/dev-workstations/providers/Microsoft.Compute/galleries/devboxGallery/images/aqStandardDevImageDef",
+            "runOutputName": "aibCustWinManImg01",
+            "artifactTags": {
+              "source": "azureVmImageBuilder",
+              "baseosimg": "win11multi"
+            },
+            "replicationRegions": ["eastus2", "eastus"]
+          }
+        ]
+      }
+    }
+  ]
+}
