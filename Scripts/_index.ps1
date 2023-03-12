@@ -14,8 +14,8 @@ function runscript {
 }
 
 
-runscript "https://raw.githubusercontent.com/agencyQ/aq-dev-setup/main/Scripts/removeDefaultApps.ps1"
 runscript "$scriptBaseUrl/removeDefaultApps.ps1"
+runscript "https://community.chocolatey.org/install.ps1"
 runscript "$scriptBaseUrl/baseSetup.ps1"
 runscript "$scriptBaseUrl/nodeDevelopment.ps1"
 runscript "$scriptBaseUrl/visualStudio.ps1"
