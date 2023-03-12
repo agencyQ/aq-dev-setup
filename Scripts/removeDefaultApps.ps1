@@ -61,7 +61,6 @@ $applicationList = @(
   "*Netflix*"
   "*Twitter*"
   "*Plex*"
-  "*Xbox*"
   "*.Duolingo-LearnLanguagesforFree"
   "*.EclipseManager"
   "ActiproSoftwareLLC.562882FEEB491" # Code Writer
