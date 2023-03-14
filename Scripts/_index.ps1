@@ -18,6 +18,5 @@ runscript "$scriptBaseUrl/removeDefaultApps.ps1"
 runscript "$scriptBaseUrl/baseSetup.ps1"
 runscript "$scriptBaseUrl/nodeDevelopment.ps1"
 runscript "$scriptBaseUrl/visualStudio.ps1"
-runscript "$scriptBaseUrl/sqlServer.ps1"
 
                             
