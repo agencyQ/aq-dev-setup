@@ -1,10 +1,6 @@
 choco install -y visualstudio2022professional
 choco install -y DotPeek
 
-cinst dotnet-6.0-sdk -y
-cinst dotnet-6.0-windowshosting-sdk -y
-cinst vcredist2015 -y
-
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-CommonHttpFeatures
@@ -44,3 +40,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName WAS-WindowsActivationService
 choco install -y webdeploy
 choco install -y urlrewrite
 
+cinst dotnet-6.0-sdk -y
+cinst dotnet-6.0-windowshosting-sdk -y
+cinst vcredist2015 -y
