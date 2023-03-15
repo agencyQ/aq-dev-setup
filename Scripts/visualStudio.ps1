@@ -1,6 +1,3 @@
-choco install -y visualstudio2022professional
-choco install -y DotPeek
-
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-CommonHttpFeatures
